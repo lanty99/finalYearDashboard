@@ -35,6 +35,10 @@ class TaskManager {
         System.out.println("Task added");
     }
 
+// In TaskManager — hands back the whole list
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
     public void viewTasks() {
         if (tasks.isEmpty()) {
             System.out.println("No tasks available");
@@ -45,21 +49,19 @@ class TaskManager {
         }
     }
 
-    public void completeTask(int index) {
-        if (index < 1 || index > tasks.size()) {
-            System.out.println("Invalid task number.");
-            return;
+    public boolean completeTask(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            return false;
         }
-        tasks.get(index - 1).markDone();
-        System.out.println("Task completed");
+        tasks.get(index).markDone();
+        return true;
     }
 
-    public void deleteTask(int index) {
-        if (index < 1 || index > tasks.size()) {
-            System.out.println("Invalid task number.");
-            return;
+    public boolean deleteTask(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            return false;
         }
-        tasks.remove(index - 1);
-        System.out.println("Task deleted");
+        tasks.remove(index);
+        return true;
     }
 }
